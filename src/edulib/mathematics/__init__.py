@@ -1,5 +1,71 @@
-"""
-Herramientas matemáticas de EduLib.
-"""
+from . import aritmetica
+from .aritmetica import (
+    sumar,
+    restar,
+    multiplicar,
+    dividir,
+    potencia,
+    raiz,
+    modulo,
+    valor_absoluto,
+    factorial,
+    mcd,
+    mcm,
+    redondear,
+    truncar,
+    promedio,
+)
 
-__all__ = []
+__all__ = [
+    "aritmetica",
+    "sumar",
+    "restar",
+    "multiplicar",
+    "dividir",
+    "potencia",
+    "raiz",
+    "modulo",
+    "valor_absoluto",
+    "factorial",
+    "mcd",
+    "mcm",
+    "redondear",
+    "truncar",
+    "promedio",
+]
+
+from . import algebra
+from .algebra import (
+    evaluar_expresion,
+    simplificar_expresion,
+    expandir_expresion,
+    factorizar_expresion,
+    sustituir_variable,
+    identificar_variables,
+    grado_expresion,
+    sumar_expresiones,
+    restar_expresiones,
+    multiplicar_expresiones,
+    dividir_expresiones,
+    elevar_expresion,
+    obtener_terminos,
+    coeficientes_polinomio,
+)
+
+__all__ =[
+    "algebra",
+    "evaluar_expresion",
+    "simplificar_expresion",
+    "expandir_expresion",
+    "factorizar_expresion",
+    "sustituir_variable",
+    "identificar_variables",
+    "grado_expresion",
+    "sumar_expresiones",
+    "restar_expresiones",
+    "multiplicar_expresiones",
+    "dividir_expresiones",
+    "elevar_expresion",
+    "obtener_terminos",
+    "coeficientes_polinomio",
+]

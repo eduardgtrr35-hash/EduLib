@@ -4,6 +4,7 @@ from . import text
 from . import physics
 from . import chemistry
 
+from .mathematics import *
 from .text import *
 
 __version__ = "0.1.0"
@@ -15,5 +16,6 @@ __all__ = [
     "text",
     "physics",
     "chemistry",
+    *mathematics.__all__,
     *text.__all__,
 ]

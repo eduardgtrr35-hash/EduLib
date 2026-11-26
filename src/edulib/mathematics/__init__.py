@@ -16,24 +16,6 @@ from .aritmetica import (
     promedio,
 )
 
-__all__ = [
-    "aritmetica",
-    "sumar",
-    "restar",
-    "multiplicar",
-    "dividir",
-    "potencia",
-    "raiz",
-    "modulo",
-    "valor_absoluto",
-    "factorial",
-    "mcd",
-    "mcm",
-    "redondear",
-    "truncar",
-    "promedio",
-]
-
 from . import algebra
 from .algebra import (
     evaluar_expresion,
@@ -53,6 +35,21 @@ from .algebra import (
 )
 
 __all__ =[
+    "aritmetica",
+    "sumar",
+    "restar",
+    "multiplicar",
+    "dividir",
+    "potencia",
+    "raiz",
+    "modulo",
+    "valor_absoluto",
+    "factorial",
+    "mcd",
+    "mcm",
+    "redondear",
+    "truncar",
+    "promedio",
     "algebra",
     "evaluar_expresion",
     "simplificar_expresion",

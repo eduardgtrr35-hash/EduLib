@@ -1,4 +1,5 @@
 """Herramientas para trabajar con texto."""
+from . import prints
 from .prints import (
     print_ultra_rapido,
     print_super_rapido,
@@ -8,9 +9,25 @@ from .prints import (
     print_super_lento,
     print_ultra_lento,
     animar_secuencia,
+    print_y_animar_secuencia,
+    print_ultra_rapido_y_secuencia,
+    print_super_rapido_y_secuencia,
+    print_rapido_y_secuencia,
+    print_medio_y_secuencia,
+    print_lento_y_secuencia,
+    print_super_lento_y_secuencia,
+    print_ultra_lento_y_secuencia,
+    print_ultra_rapido_y_secuencia,
+    print_super_rapido_y_secuencia,
+    print_rapido_y_secuencia,
+    print_medio_y_secuencia,
+    print_lento_y_secuencia,
+    print_super_lento_y_secuencia,
+    print_ultra_lento_y_secuencia,
 )
 
 __all__ = [
+    "prints",
     "print_ultra_rapido",
     "print_super_rapido",
     "print_rapido",
@@ -19,4 +36,19 @@ __all__ = [
     "print_super_lento",
     "print_ultra_lento",
     "animar_secuencia",
+    "print_y_animar_secuencia",
+    "print_ultra_rapido_y_secuencia",
+    "print_super_rapido_y_secuencia",
+    "print_rapido_y_secuencia",
+    "print_medio_y_secuencia",
+    "print_lento_y_secuencia",
+    "print_super_lento_y_secuencia",
+    "print_ultra_lento_y_secuencia",
+    "print_ultra_rapido_y_secuencia",
+    "print_super_rapido_y_secuencia",
+    "print_rapido_y_secuencia",
+    "print_medio_y_secuencia",
+    "print_lento_y_secuencia",
+    "print_super_lento_y_secuencia",
+    "print_ultra_lento_y_secuencia",
 ]

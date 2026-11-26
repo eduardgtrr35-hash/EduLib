@@ -64,6 +64,7 @@ def print_ultra_lento(*args, velocidad=0.4, end="\n"):
         time.sleep(velocidad)
 
     print(end=end, flush=True)
+
 def animar_secuencia(mensaje_base, secuencia=("", ".", "..", "..."), velocidad=0.8, duracion_segundos=5):
     """
     Anima una secuencia de estados en la misma línea.
@@ -100,3 +101,147 @@ def animar_secuencia(mensaje_base, secuencia=("", ".", "..", "..."), velocidad=0
         i += 1
 
     print()
+
+def print_y_animar_secuencia(
+    mensaje_base,
+    secuencia=("", ".", "..", "..."),
+    velocidad_texto=0.1,
+    velocidad=0.8,
+    duracion_segundos=5,
+):
+    """Escribe el mensaje base lentamente y luego anima una secuencia."""
+    if not secuencia:
+        raise ValueError("La secuencia no puede estar vacía.")
+
+    if velocidad < 0:
+        raise ValueError("La velocidad no puede ser negativa.")
+
+    if duracion_segundos < 0:
+        raise ValueError("La duración no puede ser negativa.")
+
+    if velocidad_texto < 0:
+        raise ValueError("La velocidad del texto no puede ser negativa.")
+
+    for caracter in str(mensaje_base):
+        print(caracter, end="", flush=True)
+        time.sleep(velocidad_texto)
+
+    tiempo_inicio = time.monotonic()
+    i = 0
+
+    while time.monotonic() - tiempo_inicio < duracion_segundos:
+        estado_actual = secuencia[i % len(secuencia)]
+        print(
+            f"\r{mensaje_base}{estado_actual}\033[K",
+            end="",
+            flush=True
+        )
+        time.sleep(velocidad)
+        i += 1
+
+    print()
+def print_ultra_rapido_y_secuencia(
+    mensaje_base,
+    secuencia=("", ".", "..", "..."),
+    velocidad_texto=0.001,
+    velocidad=0.8,
+    duracion_segundos=5,
+):
+    """Escribe el mensaje base a velocidad ultra rápida y anima una secuencia."""
+    return print_y_animar_secuencia(
+        mensaje_base,
+        secuencia,
+        velocidad_texto,
+        velocidad,
+        duracion_segundos,
+    )
+def print_super_rapido_y_secuencia(
+    mensaje_base,
+    secuencia=("", ".", "..", "..."),
+    velocidad_texto=0.01,
+    velocidad=0.8,
+    duracion_segundos=5,
+):
+    """Escribe el mensaje base a velocidad súper rápida y anima una secuencia."""
+    return print_y_animar_secuencia(
+        mensaje_base,
+        secuencia,
+        velocidad_texto,
+        velocidad,
+        duracion_segundos,
+    )
+def print_rapido_y_secuencia(
+    mensaje_base,
+    secuencia=("", ".", "..", "..."),
+    velocidad_texto=0.03,
+    velocidad=0.8,
+    duracion_segundos=5,
+):
+    """Escribe el mensaje base a velocidad rápida y anima una secuencia."""
+    return print_y_animar_secuencia(
+        mensaje_base,
+        secuencia,
+        velocidad_texto,
+        velocidad,
+        duracion_segundos,
+    )
+def print_medio_y_secuencia(
+    mensaje_base,
+    secuencia=("", ".", "..", "..."),
+    velocidad_texto=0.6,
+    velocidad=0.8,
+    duracion_segundos=5,
+):
+    """Escribe el mensaje base a velocidad media y anima una secuencia."""
+    return print_y_animar_secuencia(
+        mensaje_base,
+        secuencia,
+        velocidad_texto,
+        velocidad,
+        duracion_segundos,
+    )
+def print_lento_y_secuencia(
+    mensaje_base,
+    secuencia=("", ".", "..", "..."),
+    velocidad_texto=0.1,
+    velocidad=0.8,
+    duracion_segundos=5,
+):
+    """Escribe el mensaje base a velocidad lenta y anima una secuencia."""
+    return print_y_animar_secuencia(
+        mensaje_base,
+        secuencia,
+        velocidad_texto,
+        velocidad,
+        duracion_segundos,
+    )
+def print_super_lento_y_secuencia(
+    mensaje_base,
+    secuencia=("", ".", "..", "..."),
+    velocidad_texto=0.2,
+    velocidad=0.8,
+    duracion_segundos=5,
+):
+    """Escribe el mensaje base a velocidad súper lenta y anima una secuencia."""
+    return print_y_animar_secuencia(
+        mensaje_base,
+        secuencia,
+        velocidad_texto,
+        velocidad,
+        duracion_segundos,
+    )
+def print_ultra_lento_y_secuencia(
+    mensaje_base,
+    secuencia=("", ".", "..", "..."),
+    velocidad_texto=0.4,
+    velocidad=0.8,
+    duracion_segundos=5,
+):
+    """Escribe el mensaje base a velocidad ultra lenta y anima una secuencia."""
+    return print_y_animar_secuencia(
+        mensaje_base,
+        secuencia,
+        velocidad_texto,
+        velocidad,
+        duracion_segundos,
+    )

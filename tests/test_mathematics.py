@@ -39,10 +39,59 @@ class AritmeticaTests(unittest.TestCase):
     def test_validacion_numerica_y_division_por_cero(self):
         with self.assertRaises(TypeError):
             aritmetica.sumar(True, 1)
+        with self.assertRaises(ValueError):
+            aritmetica.sumar()
+        with self.assertRaises(ValueError):
+            aritmetica.dividir()
+        with self.assertRaises(ValueError):
+            aritmetica.dividir(5)
         with self.assertRaises(ZeroDivisionError):
             aritmetica.dividir(5, 0)
         with self.assertRaises(ZeroDivisionError):
             aritmetica.modulo(5, 0)
+        with self.assertRaises(ValueError):
+            aritmetica.sumar(float("inf"))
+
+    def test_potencias_raices_y_factorial_en_limites(self):
+        self.assertEqual(aritmetica.potencia(0, 0), 1)
+        self.assertEqual(aritmetica.raiz(0, 3), 0)
+        self.assertAlmostEqual(aritmetica.raiz(-27, 3), -3)
+        self.assertEqual(aritmetica.factorial(0), 1)
+
+        with self.assertRaises(ZeroDivisionError):
+            aritmetica.potencia(0, -1)
+        with self.assertRaises(ValueError):
+            aritmetica.potencia(-1, 0.5)
+        with self.assertRaises(ValueError):
+            aritmetica.raiz(-16, 2)
+        with self.assertRaises(ValueError):
+            aritmetica.raiz(16, 0)
+        with self.assertRaises(TypeError):
+            aritmetica.raiz(16, True)
+        with self.assertRaises(ValueError):
+            aritmetica.factorial(-1)
+        with self.assertRaises(TypeError):
+            aritmetica.factorial(3.0)
+
+    def test_divisibilidad_promedios_y_redondeo_validan_entradas(self):
+        for funcion in (aritmetica.mcd, aritmetica.mcm):
+            with self.subTest(funcion=funcion.__name__):
+                with self.assertRaises(ValueError):
+                    funcion(5)
+                with self.assertRaises(TypeError):
+                    funcion(5, True)
+
+        self.assertEqual(aritmetica.promedio(iter([2, 4])), 3)
+        with self.assertRaises(ValueError):
+            aritmetica.promedio([])
+        with self.assertRaises(TypeError):
+            aritmetica.promedio("123")
+        with self.assertRaises(TypeError):
+            aritmetica.promedio([1, False])
+        with self.assertRaises(TypeError):
+            aritmetica.redondear(1.2, True)
+        with self.assertRaises(ValueError):
+            aritmetica.truncar(float("inf"))
 
 
 try:
@@ -87,6 +136,61 @@ class AlgebraTests(unittest.TestCase):
             algebra.evaluar_expresion("x", {True: 2})
         with self.assertRaises(ZeroDivisionError):
             algebra.dividir_expresiones("x", 0)
+
+    def test_gramatica_permitida_y_funciones_matematicas(self):
+        from edulib.mathematics import algebra
+
+        self.assertEqual(algebra.evaluar_expresion("sin(pi / 2)"), 1)
+        self.assertEqual(algebra.evaluar_expresion("sqrt(9)"), 3)
+        self.assertEqual(algebra.evaluar_expresion("abs(-4)"), 4)
+        self.assertEqual(algebra.simplificar_expresion("E**0"), 1)
+
+    def test_parser_rechaza_sintaxis_no_permitida_y_entradas_complejas(self):
+        from edulib.mathematics import algebra
+
+        expresiones_invalidas = (
+            "x.__class__",
+            "[x for x in (1,)]",
+            "lambda: 1",
+            "unknown_function(x)",
+            "sin(x, y)",
+            "sin(x, extra=1)",
+            "x % 2",
+            "oo",
+            "1e999",
+            "__import__('os')",
+            "__import__('builtins').print('UNSAFE')",
+        )
+        salida = io.StringIO()
+        with contextlib.redirect_stdout(salida):
+            for expresion in expresiones_invalidas:
+                with self.subTest(expresion=expresion):
+                    with self.assertRaises(ValueError):
+                        algebra.simplificar_expresion(expresion)
+        self.assertEqual(salida.getvalue(), "")
+
+        with self.assertRaises(ValueError):
+            algebra.simplificar_expresion("x" * 1001)
+        with self.assertRaises(ValueError):
+            algebra.simplificar_expresion(" + ".join(["x"] * 101))
+        with self.assertRaises(ValueError):
+            algebra.simplificar_expresion("-" * 51 + "x")
+
+    def test_parser_rechaza_exponentes_numericos_excesivos(self):
+        from edulib.mathematics import algebra
+
+        with self.assertRaises(ValueError):
+            algebra.simplificar_expresion("9**999999999")
+        with self.assertRaises(ValueError):
+            algebra.elevar_expresion("x", 1001)
+
+    def test_expansion_rechaza_complejidad_combinatoria(self):
+        from edulib.mathematics import algebra
+
+        variables = " + ".join(f"x{indice}" for indice in range(30))
+        expresion = f"({variables})**100"
+        with self.assertRaisesRegex(ValueError, "términos"):
+            algebra.expandir_expresion(expresion)
 
 
 if __name__ == "__main__":

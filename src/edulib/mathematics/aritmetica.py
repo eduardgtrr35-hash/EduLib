@@ -63,8 +63,8 @@ def multiplicar(*numeros):
 def dividir(*numeros):
     """Divide dos o más números."""
 
-    if not numeros:
-        raise ValueError("Debes proporcionar al menos un número.")
+    if len(numeros) < 2:
+        raise ValueError("Debes proporcionar al menos dos números.")
 
     for numero in numeros:
         _validar_numero(numero)

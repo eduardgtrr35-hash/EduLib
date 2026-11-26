@@ -7,7 +7,7 @@ from . import chemistry
 from .mathematics import *
 from .text import *
 
-__version__ = "0.1.0"
+__version__ = "0.1.4"
 __author__ = "EduLib Developer"
 
 __all__ = [

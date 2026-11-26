@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "EduLib"
-version = "0.1.2"
+version = "0.1.4"
 description = "Biblioteca multipropósito de Python."
 readme = "README.md"
 requires-python = ">=3.10"

@@ -36,7 +36,7 @@ def sumar(*numeros):
     for numero in numeros:
         _validar_numero(numero)
 
-    return print(sum(numeros))
+    return sum(numeros)
 def restar(*numeros):
     """Resta dos o más números."""
 
@@ -46,7 +46,7 @@ def restar(*numeros):
     for numero in numeros:
         _validar_numero(numero)
 
-    return print(numeros[0] - sum(numeros[1:]))
+    return numeros[0] - sum(numeros[1:])
 def multiplicar(*numeros):
     """Multiplica dos o más números."""
 
@@ -59,7 +59,7 @@ def multiplicar(*numeros):
         _validar_numero(numero)
         resultado *= numero
 
-    return print(resultado)
+    return resultado
 def dividir(*numeros):
     """Divide dos o más números."""
 
@@ -98,7 +98,7 @@ def potencia(base, exponente):
             "El resultado no pertenece a los números reales."
         )
 
-    return print(resultado)
+    return resultado
 def raiz(numero, indice):
     """
     Calcula una raíz de cualquier índice entero positivo.
@@ -125,7 +125,7 @@ def raiz(numero, indice):
 
         return -((-numero) ** (1 / indice))
 
-    return print(numero ** (1 / indice))
+    return numero ** (1 / indice)
 
 # ==========================================
 # OPERACIONES ESPECIALES
@@ -133,8 +133,8 @@ def raiz(numero, indice):
 def modulo(*numeros):
     """Obtiene el residuo de una división."""
 
-    if not numeros:
-        raise ValueError("Debes proporcionar al menos un número.")
+    if len(numeros) != 2:
+        raise ValueError("Debes proporcionar exactamente dos números.")
 
     for numero in numeros:
         _validar_numero(numero)
@@ -144,13 +144,13 @@ def modulo(*numeros):
             "No se puede calcular módulo entre cero."
         )
 
-    return print(numeros[0] % numeros[1])
+    return numeros[0] % numeros[1]
 def valor_absoluto(numero):
     """Devuelve el valor absoluto de un número."""
 
     _validar_numero(numero)
 
-    return print(abs(numero))
+    return abs(numero)
 def factorial(numero):
     """Calcula el factorial de un entero no negativo."""
 
@@ -161,7 +161,7 @@ def factorial(numero):
             "El factorial no admite números negativos."
         )
 
-    return print(math.factorial(numero))
+    return math.factorial(numero)
 
 # ==========================================
 # DIVISIBILIDAD
@@ -177,7 +177,7 @@ def mcd(*numeros):
     for numero in numeros:
         _validar_entero(numero)
 
-    return print(math.gcd(*numeros))
+    return math.gcd(*numeros)
 def mcm(*numeros):
     """Calcula el mínimo común múltiplo de dos o más enteros."""
 
@@ -189,7 +189,7 @@ def mcm(*numeros):
     for numero in numeros:
         _validar_entero(numero)
 
-    return print(math.lcm(*numeros))
+    return math.lcm(*numeros)
 
 # ==========================================
 # REDONDEO Y PROMEDIOS
@@ -200,13 +200,13 @@ def redondear(numero, decimales=0):
     _validar_numero(numero)
     _validar_entero(decimales, "decimales")
 
-    return print(round(numero, decimales))
+    return round(numero, decimales)
 def truncar(numero):
     """Elimina la parte decimal de un número."""
 
     _validar_numero(numero)
 
-    return print(math.trunc(numero))
+    return math.trunc(numero)
 def promedio(numeros):
     """Calcula el promedio de una colección de números."""
 
@@ -225,4 +225,4 @@ def promedio(numeros):
     for numero in numeros:
         _validar_numero(numero)
 
-    return print(sum(numeros) / len(numeros))
+    return sum(numeros) / len(numeros)

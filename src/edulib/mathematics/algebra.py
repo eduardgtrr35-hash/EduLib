@@ -93,25 +93,25 @@ def evaluar_expresion(expresion, valores=None, **variables):
         valor_convertido = _convertir_expresion(valor, "valor")
         sustituciones_convertidas[simbolo] = valor_convertido
 
-    return print(resultado.subs(sustituciones_convertidas))
+    return resultado.subs(sustituciones_convertidas)
 def simplificar_expresion(expresion):
     """Simplifica una expresión algebraica."""
 
     expresion = _convertir_expresion(expresion)
 
-    return print(sp.simplify(expresion))
+    return sp.simplify(expresion)
 def expandir_expresion(expresion):
     """Desarrolla productos y potencias algebraicas."""
 
     expresion = _convertir_expresion(expresion)
 
-    return  print(sp.expand(expresion))
+    return sp.expand(expresion)
 def factorizar_expresion(expresion):
     """Factoriza una expresión algebraica."""
 
     expresion = _convertir_expresion(expresion)
 
-    return print(sp.factor(expresion))
+    return sp.factor(expresion)
 def sustituir_variable(expresion, variable, valor):
     """
     Sustituye una variable por un valor o expresión.
@@ -124,7 +124,7 @@ def sustituir_variable(expresion, variable, valor):
     simbolo = _convertir_variable(variable)
     valor = _convertir_expresion(valor, "valor")
 
-    return print(expresion.subs(simbolo, valor))
+    return expresion.subs(simbolo, valor)
 
 # ==========================================
 # ANÁLISIS DE EXPRESIONES
@@ -140,9 +140,9 @@ def identificar_variables(expresion):
 
     variables = expresion.free_symbols
 
-    return print(sorted(
+    return sorted(
         [str(variable) for variable in variables]
-    ))
+    )
 def grado_expresion(expresion, variable=None):
     """
     Obtiene el grado de una expresión respecto a una variable.
@@ -187,7 +187,7 @@ def grado_expresion(expresion, variable=None):
             "El grado de la expresión cero no está definido."
         )
 
-    return print(int(grado))
+    return int(grado)
 
 # ==========================================
 # OPERACIONES ENTRE EXPRESIONES
@@ -205,14 +205,14 @@ def sumar_expresiones(*expresiones):
         for expresion in expresiones
     ]
 
-    return print(sp.expand(sum(expresiones)))
+    return sp.expand(sum(expresiones))
 def restar_expresiones(a, b):
     """Resta una expresión algebraica de otra."""
 
     a = _convertir_expresion(a, "a")
     b = _convertir_expresion(b, "b")
 
-    return print(sp.expand(a - b))
+    return sp.expand(a - b)
 def multiplicar_expresiones(*expresiones):
     """Multiplica dos o más expresiones algebraicas."""
 
@@ -228,7 +228,7 @@ def multiplicar_expresiones(*expresiones):
 
     resultado = sp.prod(expresiones)
 
-    return print(sp.expand(resultado))
+    return sp.expand(resultado)
 def dividir_expresiones(a, b):
     """Divide una expresión algebraica entre otra."""
 
@@ -240,14 +240,14 @@ def dividir_expresiones(a, b):
             "No se puede dividir entre una expresión igual a cero."
         )
 
-    return print(sp.cancel(a / b))
+    return sp.cancel(a / b)
 def elevar_expresion(base, exponente):
     """Eleva una expresión algebraica a una potencia."""
 
     base = _convertir_expresion(base, "base")
     exponente = _convertir_expresion(exponente, "exponente")
 
-    return print(sp.expand(base ** exponente))
+    return sp.expand(base ** exponente)
 
 # ==========================================
 # EXTRACCIÓN DE INFORMACIÓN
@@ -262,7 +262,7 @@ def obtener_terminos(expresion):
 
     expresion = _convertir_expresion(expresion)
 
-    return print(list(sp.Add.make_args(sp.expand(expresion))))
+    return list(sp.Add.make_args(sp.expand(expresion)))
 def coeficientes_polinomio(expresion, variable=None):
     """
     Obtiene los coeficientes de un polinomio.
@@ -296,4 +296,4 @@ def coeficientes_polinomio(expresion, variable=None):
             "respecto a la variable indicada."
         ) from error
 
-    return print(polinomio.all_coeffs())
+    return polinomio.all_coeffs()
